@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+       $data['users'] = User::orderBy('id','desc')->get();
+       return view('admin.user.index',$data);
     }
 
     /**
@@ -35,7 +37,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $request->validate([
+           'role' => 'required|in:'.User::User_Admin_Role.','.User::User_Teacher_Role,
+           'name'       => 'required',
+           'email'      => 'required|email|unique:users',
+           'password'   => 'required|confirmed',
+           'gender'     => 'required',
+           'image'      => 'mimes:jpeg,png|max:2048'
+       ]);
+       $data = $request->except(['_token','image','password']);
+       $data['password'] = bcrypt($request->password);
+       if ($request->hasFile('image')){
+           $file = $request->file('image');
+           $path = 'images/user';
+           $file_name = time().rand('0000','9999').'.'.$file->getClientOriginalName();
+           $file->move($path,$file_name);
+           $data['image'] = $path.'/'.$file_name;
+           }
+        User::create($data);
+
+        session()->flash('message','Admin Created Successfully!');
+
+        return redirect()->route('user.create');
     }
 
     /**
