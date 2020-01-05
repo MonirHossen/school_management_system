@@ -57,7 +57,6 @@ class UserController extends Controller
         User::create($data);
 
         session()->flash('message','Admin Created Successfully!');
-
         return redirect()->route('user.create');
     }
 
@@ -80,7 +79,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+      $data['user'] = User::findOrFail($id);
+      return view('admin.user.edit',$data);
     }
 
     /**
@@ -92,7 +92,35 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'role' => 'required|in:'.User::User_Admin_Role.','.User::User_Teacher_Role,
+            'name'       => 'required',
+            'gender'     => 'required',
+            'image'      => 'mimes:jpeg,png|max:2048'
+        ]);
+        $data['role']       = $request->role;
+        $data['name']       = $request->name;
+        $data['gender']     = $request->gender;
+        $data['phone']      = $request->phone;
+        $data['address']    = $request->address;
+
+        $user = User::findOrFail($id);
+
+        if ($request->hasFile('image'))
+        {
+            $file        = $request->file('image');
+            $path        = 'images/user';
+            $file_name   = time().rand('0000','9999').'.'.$file->getClientOriginalName();
+            $file->move($path,$file_name);
+            $data['image'] = $path.'/'.$file_name;
+            if ($user->image != null && file_exists($user->image))
+            {
+                unlink($user->image);
+            }
+        }
+        $user->update($data);
+        session()->flash('message','Admin Update Successfully!');
+        return redirect()->route('user.index');
     }
 
     /**

@@ -16,9 +16,11 @@
             <li class="breadcrumb-item active"><a href="">admins</a></li>
         </ul>
     </div>
+    @include('layouts.admin._message')
     <div class="row">
         <div class="col-md-12">
-            <div class="tile">
+            <a href="{{ route('user.create') }}" class="btn btn-info btn-lg"> Add Admin</a>
+            <div class="tile mt-3">
                 <div class="tile-body">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered" id="sampleTable">
@@ -47,7 +49,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('user.edit',$user->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
                                             <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
