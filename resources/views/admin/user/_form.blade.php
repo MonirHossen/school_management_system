@@ -3,8 +3,8 @@
     <div class="col-md-8">
         <select  name="role" id="role" class="form-control">
             <option value="">--Select Role--</option>
-            <option @if(old('role',isset($user->role) ? $user->role : null) == \App\User::User_Admin_Role) selected @endif value="{{ \App\User::User_Admin_Role }}">Admin</option>
-            <option @if(old('role',isset($user->role) ? $user->role : null) == \App\User::User_Teacher_Role) selected @endif value="{{ \App\User::User_Teacher_Role }}">Teacher</option>
+            <option @if(old('role',isset($user->role) ? $user->role : null) == \App\Models\User::User_Admin_Role) selected @endif value="{{ \App\Models\User::User_Admin_Role }}">Admin</option>
+            <option @if(old('role',isset($user->role) ? $user->role : null) == \App\Models\User::User_Teacher_Role) selected @endif value="{{ \App\Models\User::User_Teacher_Role }}">Teacher</option>
         </select>
         @error('role')
         <span class="text-danger">{{ $message }}</span>

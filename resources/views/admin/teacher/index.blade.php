@@ -1,25 +1,25 @@
 @extends('layouts.admin.master')
 
-@section('title','lists of admin')
+@section('title','list of teacher')
 
 @push('css') @endpush
 
 @section('content')
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-th-list"></i>Admins</h1>
-            <p>show all admin here</p>
+            <h1><i class="fa fa-th-list"></i>Teacher's</h1>
+            <p>all teachers list here</p>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
             <li class="breadcrumb-item">Tables</li>
-            <li class="breadcrumb-item active"><a href="">admins</a></li>
+            <li class="breadcrumb-item active"><a href="">teachers</a></li>
         </ul>
     </div>
     @include('layouts.admin._message')
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ route('user.create') }}" class="btn btn-info btn-lg"> Add Admin</a>
+            <a href="{{ route('admin.teacher.create') }}" class="btn btn-info btn-lg"> Add Teacher</a>
             <div class="tile mt-3">
                 <div class="tile-body">
                     <div class="table-responsive">
@@ -30,27 +30,29 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Role</th>
+                                <th>Designation</th>
+                                <th>Salary</th>
                                 <th>Image</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($users as $key=>$user)
+                                @foreach($teachers as $key=>$teacher)
                                     <tr>
                                         <td>{{ ++$key }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->phone }}</td>
-                                        <td>{{ $user->role }}</td>
+                                        <td>{{ $teacher->name }}</td>
+                                        <td>{{ $teacher->email }}</td>
+                                        <td>{{ $teacher->phone }}</td>
+                                        <td>{{ $teacher->designation }}</td>
+                                        <td>{{ $teacher->salary }}</td>
                                         <td>
-                                            @if($user->image !=null)
-                                                <img src="{{ asset($user->image) }}" style="width: 50px;height: 50px;" alt="{{ $user->name }}">
+                                            @if($teacher->image !=null)
+                                                <img src="{{ asset($teacher->image) }}" style="width: 50px;height: 50px;" alt="">
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('user.edit',$user->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                            <form class="d-inline-block" action="{{route('user.destroy',$user->id)}}" method="post">
+                                            <a href="{{ route('admin.teacher.edit',$teacher->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                            <form class="d-inline-block" action="{{route('admin.teacher.destroy',$teacher->id)}}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure Delete This User?')"><i class="fa fa-trash"></i></button>
