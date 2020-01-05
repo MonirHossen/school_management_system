@@ -131,6 +131,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        if ($user->image != null && file_exists($user->image))
+        {
+            unlink($user->image);
+        }
+        $user->delete();
+        session()->flash('message','Admin Deleted Successfully!');
+        return redirect()->route('user.index');
     }
 }

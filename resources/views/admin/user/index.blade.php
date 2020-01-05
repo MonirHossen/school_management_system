@@ -50,7 +50,11 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('user.edit',$user->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                            <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                            <form class="d-inline-block" action="{{route('user.destroy',$user->id)}}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure Delete This User?')"><i class="fa fa-trash"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
