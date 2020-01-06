@@ -12,7 +12,7 @@ class Label extends Model
         'name',
         'status',
     ];
-    public function subject(){
+    public function subjects(){
         return $this->hasMany(Subject::class);
     }
 }
