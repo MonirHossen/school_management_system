@@ -4,4 +4,5 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth','prefix'=>'admin'],fun
     Route::resource('user','UserController');
     Route::resource('subject','SubjectController',['as'=>'admin']);
     Route::resource('teacher','TeacherController',['as'=>'admin']);
+    Route::resource('student','StudentController',['as'=>'admin']);
 });

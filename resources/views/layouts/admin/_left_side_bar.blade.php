@@ -10,5 +10,6 @@
         <li><a class="app-menu__item " href="{{ route('user.index') }}"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Admins</span></a></li>
         <li><a class="app-menu__item " href="{{ route('admin.subject.index') }}"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Subjects</span></a></li>
         <li><a class="app-menu__item " href="{{ route('admin.teacher.index') }}"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Teachers</span></a></li>
+        <li><a class="app-menu__item " href="{{ route('admin.student.index') }}"><i class="app-menu__icon fa fa-users"></i><span class="app-menu__label">Students</span></a></li>
     </ul>
 </aside>
