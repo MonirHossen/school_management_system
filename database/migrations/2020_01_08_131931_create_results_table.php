@@ -28,7 +28,7 @@ class CreateResultsTable extends Migration
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->date('exam_date');
             $table->double('marks');
-            $table->string('comments');
+            $table->string('comments')->nullable();
             $table->string('status');
             $table->timestamps();
         });

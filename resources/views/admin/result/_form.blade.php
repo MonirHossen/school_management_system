@@ -27,10 +27,9 @@
 <div class="form-group col-md-3">
     <label for="student_id" class="control-label">Student<span class="text-danger">*</span></label>
     <select  name="student_id" id="student_id" class="form-control">
-        <option value="">--Select Student--</option>
-        @foreach($students as $student)
-            <option @if(old('student_id',isset($result->student_id) ? $result->student_id : null) == $student->id) selected @endif value="{{ $student->id }}">{{ $student->name }}</option>
-        @endforeach
+{{--        <option value="">--Select Student--</option>--}}
+        <option value="0" disabled="true" selected="true">Select Student</option>
+
     </select>
     @error('student_id')
     <span class="text-danger">{{ $message }}</span>
@@ -40,10 +39,7 @@
 <div class="form-group col-md-3">
     <label for="label" class="control-label">Subject<span class="text-danger">*</span></label>
     <select  name="subject_id" id="subject_id" class="form-control">
-        <option value="">--Select Subjects--</option>
-        @foreach($subjects as $subject)
-            <option @if(old('subject_id',isset($result->subject_id) ? $result->subject_id : null) == $subject->id) selected @endif value="{{ $subject->id }}">{{ $subject->name }}</option>
-        @endforeach
+        <option value="0" disabled="true" selected="true">Select Subject</option>
     </select>
     @error('subject_id')
     <span class="text-danger">{{ $message }}</span>

@@ -61,5 +61,60 @@
                 });
             }).attr("readonly", false);
         });
+        $(document).ready(function () {
+            $(document).on('change','#label_id',function () {
+                // console.log('text is change');
+                let label_id = $(this).val();
+                let div=$(this).parent();
+                // console.log(label_id);
+                let op = " ";
+                $.ajax({
+                    type:'GET',
+                    url: '{!! \Illuminate\Support\Facades\URL::to('getStudent') !!}',
+                    data:{'id':label_id},
+                    success:function (data) {
+                        op+='<option value="0" selected disabled>Select Student</option>';
+                        for(let i=0;i<data.length;i++)
+                        {
+                            op += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
+                        }
+                        $('#student_id').html(" ");
+                        $('#student_id').append(op);
+
+                    },
+                    error:function () {
+
+                    },
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $(document).on('change','#label_id',function () {
+                // console.log('text is change');
+                let label_id = $(this).val();
+                let div=$(this).parent();
+                // console.log(label_id);
+                let op = " ";
+                $.ajax({
+                    type:'GET',
+                    url: '{!! \Illuminate\Support\Facades\URL::to('getSubject') !!}',
+                    data:{'id':label_id},
+                    success:function (data) {
+                        op+='<option value="0" selected disabled>Select Subject</option>';
+                        for(let i=0;i<data.length;i++)
+                        {
+                            op += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
+                        }
+                        $('#subject_id').html(" ");
+                        $('#subject_id').append(op);
+
+                    },
+                    error:function () {
+
+                    },
+                });
+            });
+        });
     </script>
 @endpush

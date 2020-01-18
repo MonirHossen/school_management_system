@@ -38,7 +38,14 @@ class ResultController extends Controller
         $data['exams']      = Exam::all();
         return view('admin.result.create',$data);
     }
-
+    public function getStudent(Request $request){
+            $data = Student::select('name','id')->where('label_id',$request->id)->get();
+            return response()->json($data);
+    }
+    public function getSubject(Request $request){
+            $data = Subject::select('name','id')->where('label_id',$request->id)->get();
+            return response()->json($data);
+    }
     /**
      * Store a newly created resource in storage.
      *
