@@ -11,5 +11,19 @@
         <li><a class="app-menu__item " href="{{ route('admin.subject.index') }}"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Subjects</span></a></li>
         <li><a class="app-menu__item " href="{{ route('admin.teacher.index') }}"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Teachers</span></a></li>
         <li><a class="app-menu__item " href="{{ route('admin.student.index') }}"><i class="app-menu__icon fa fa-users"></i><span class="app-menu__label">Students</span></a></li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Results</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+                <li><a class="treeview-item" href="{{ route('admin.result.index') }}"><i class="icon fa fa-circle-o"></i>Student Result</a></li>
+                <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
+            </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-dollar"></i><span class="app-menu__label">Fee Management</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+                <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i>Fee Receipt</a></li>
+                <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Classes Fees</a></li>
+                <li><a class="treeview-item" href="{{ route('admin.fee_type.index') }}"><i class="icon fa fa-circle-o"></i> Fees Types</a></li>
+                <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i>Generate Receipts</a></li>
+            </ul>
+        </li>
     </ul>
 </aside>

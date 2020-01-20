@@ -17,7 +17,27 @@
         </ul>
     </div>
     @include('layouts.admin._message')
-    <div class="row">
+{{--    <div class="row">--}}
+{{--        <div class="col-md-12">--}}
+{{--            <div class="tile mt-3">--}}
+{{--                <div class="tile-body">--}}
+{{--                    <form class="row" action="" method="">--}}
+{{--                        <div class="form-group col-md-3">--}}
+{{--                            <label for="label" class="control-label">Label<span class="text-danger">*</span></label>--}}
+{{--                            <select  name="label_id" id="label_id" class="form-control">--}}
+{{--                                <option value="">--Select Label--</option>--}}
+{{--                                @foreach($labels as $label)--}}
+{{--                                    <option @if(old('label_id',isset($result->label_id) ? $result->label_id : null) == $label->id) selected @endif value="{{ $label->id }}">{{ $label->name }}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                            @error('label_id')--}}
+{{--                            <span class="text-danger">{{ $message }}</span>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <div class="col-md-12">
             <a href="{{ route('admin.result.create') }}" class="btn btn-info btn-lg"> Add result</a>
             <div class="tile mt-3">
@@ -30,7 +50,9 @@
                                 <th>Class</th>
                                 <th>Registration</th>
                                 <th>Name</th>
-                                <th>Roll</th>
+                                <th>Exam Type</th>
+                                <th>Subject</th>
+                                <th>Marks</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -40,9 +62,11 @@
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $result->label->name }}</td>
-                                        <td>{{ $result->reg_code }}</td>
-                                        <td>{{ $result->name }}</td>
-                                        <td>{{ $result->roll }}</td>
+                                        <td>{{ $result->student->reg_code }}</td>
+                                        <td>{{ $result->student->name }}</td>
+                                        <td>{{ $result->exam->exam_type }}</td>
+                                        <td>{{ $result->subject->name }}</td>
+                                        <td>{{ $result->marks }}</td>
                                         <td>
                                             @if($result->status == 'active')
                                                 <i class="btn btn-sm btn-success">{{ strtoupper($result->status) }}</i>

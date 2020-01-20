@@ -61,6 +61,7 @@
                 });
             }).attr("readonly", false);
         });
+
         $(document).ready(function () {
             $(document).on('change','#label_id',function () {
                 // console.log('text is change');
@@ -88,6 +89,7 @@
                 });
             });
         });
+
 
         $(document).ready(function () {
             $(document).on('change','#label_id',function () {

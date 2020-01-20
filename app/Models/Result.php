@@ -13,7 +13,7 @@ class Result extends Model
        'user_id',
        'label_id',
        'student_id',
-       'student_reg',
+       'reg_no',
        'exam_id',
        'subject_id',
        'exam_date',

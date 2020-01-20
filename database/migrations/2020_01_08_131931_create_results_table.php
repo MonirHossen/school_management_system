@@ -21,7 +21,7 @@ class CreateResultsTable extends Migration
             $table->foreign('label_id')->references('id')->on('labels');
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('students');
-            $table->integer('student_reg');
+            $table->integer('reg_no');
             $table->unsignedBigInteger('exam_id');
             $table->foreign('exam_id')->references('id')->on('exams');
             $table->unsignedBigInteger('subject_id');

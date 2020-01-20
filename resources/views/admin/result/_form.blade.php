@@ -24,12 +24,12 @@
     @enderror
 </div>
 
+
 <div class="form-group col-md-3">
     <label for="student_id" class="control-label">Student<span class="text-danger">*</span></label>
     <select  name="student_id" id="student_id" class="form-control">
 {{--        <option value="">--Select Student--</option>--}}
         <option value="0" disabled="true" selected="true">Select Student</option>
-
     </select>
     @error('student_id')
     <span class="text-danger">{{ $message }}</span>
@@ -55,6 +55,14 @@
         @endforeach
     </select>
     @error('exam_id')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
+</div>
+
+<div class="form-group col-md-3">
+    <label for="exam_date" class="control-label">Exam Date<span class="text-danger">*</span></label>
+    <input class="form-control" value="{{ old('exam_date',isset($result->exam_date) ? $result->exam_date : null) }}" name="exam_date" id="exam_date" type="date"  required>
+    @error('exam_date')
     <span class="text-danger">{{ $message }}</span>
     @enderror
 </div>

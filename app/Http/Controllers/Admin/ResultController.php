@@ -38,6 +38,10 @@ class ResultController extends Controller
         $data['exams']      = Exam::all();
         return view('admin.result.create',$data);
     }
+
+    /**
+     *  this two method using for get student and result using ajax
+     */
     public function getStudent(Request $request){
             $data = Student::select('name','id')->where('label_id',$request->id)->get();
             return response()->json($data);
@@ -46,6 +50,7 @@ class ResultController extends Controller
             $data = Subject::select('name','id')->where('label_id',$request->id)->get();
             return response()->json($data);
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -54,7 +59,23 @@ class ResultController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $request->validate([
+           'user_id'    => 'required',
+           'label_id'   => 'required',
+           'student_id' => 'required',
+           'subject_id' => 'required',
+           'exam_id'    => 'required',
+           'exam_date'  => 'required',
+           'status'     => 'required:in'.Result::Active_Status.','.Result::InActive_Status,
+       ]);
+        $data   = $request->except('_token');
+        $student = Student::select('reg_no')->where('label_id',$request->label_id)->first();
+        if ($student !=null ){
+            $data['reg_no'] = $student->reg_no;
+        }
+        Result::create($data);
+        session()->flash('message','Student Added Successfully!');
+        return redirect()->route('admin.result.index');
     }
 
     /**
@@ -76,7 +97,14 @@ class ResultController extends Controller
      */
     public function edit($id)
     {
-        //
+
+
+        $data['result']      =  Result::findOrFail($id);
+        $data['users']       =  User::all();
+        $data['labels']      =  Label::all();
+        $data['exams']       =  Exam::all();
+//        $data['students']    =  Student::with('label');
+        return view('admin.result.edit',$data);
     }
 
     /**
@@ -88,7 +116,21 @@ class ResultController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'user_id'    => 'required',
+            'label_id'   => 'required',
+            'exam_id'    => 'required',
+            'exam_date'  => 'required',
+            'status'     => 'required:in'.Result::Active_Status.','.Result::InActive_Status,
+        ]);
+        $data = $request->except('_token');
+//        dd($data);
+
+        $result = Result::findOrFail($id);
+
+        $result->update($data);
+        session()->flash('message','Result Updated Successfully!');
+        return redirect()->route('admin.result.index');
     }
 
     /**
