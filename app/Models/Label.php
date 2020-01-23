@@ -21,4 +21,7 @@ class Label extends Model
     public function results(){
         return $this->hasMany(Result::class);
     }
+    public function classesFees(){
+        return $this->hasMany(ClassesFee::class);
+    }
 }

@@ -7,6 +7,7 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth','prefix'=>'admin'],fun
     Route::resource('student','StudentController',['as'=>'admin']);
     Route::resource('result','ResultController',['as'=>'admin']);
     Route::resource('fee_type','FeeTypeController',['as'=>'admin']);
+    Route::resource('classes_fee','ClassesFeeController',['as'=>'admin']);
 
 });
 Route::get('/getStudent','Admin\ResultController@getStudent')->name('admin.result.getStudent');

@@ -10,4 +10,8 @@ class FeeType extends Model
     const InActive_Status = 'inactive';
 
     protected $fillable = ['fee_type','status'];
+
+    public function classesFees(){
+        return $this->hasMany(ClassesFee::class);
+    }
 }
